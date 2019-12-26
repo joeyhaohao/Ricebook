@@ -1,6 +1,6 @@
 # RiceBook
 
-RiceBook is a Rice social networking site to post ideas, follow users and chat online.
+RiceBook is a social networking site for students to post ideas, follow users and chat online. It is a course project for Rice COMP531.
 
 ## Tech Stack
 * Angular, Ajax
@@ -13,7 +13,7 @@ RiceBook is a Rice social networking site to post ideas, follow users and chat o
 * Facebook/Rice login
 * Post ideas and images
 * User Profile management
-* Follow users
-* Online chat
+* Follow users and get posts feed
+* Instant messaging for online chat
 
 Visit our [website](http://yz157-ricebook.surge.sh/).
