@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+<testsuite name="Validate Profile functionality" errors="0" tests="2" failures="0" time="0.069" timestamp="2019-11-19T10:02:13">
+  <testcase classname="Validate Profile functionality" name="validate GET /headline" time="0.034"></testcase>
+  <testcase classname="Validate Profile functionality" name="validate POST /headline" time="0.033"></testcase>
+</testsuite>
+</testsuites>

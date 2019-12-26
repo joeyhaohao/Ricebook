@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="active">
+        <a class="nav-link" [routerLink]="['/main']">Home</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li ngbDropdown class="d-inline-block">
+        <a class="nav-link" id="dropdownMenuButton" ngbDropdownToggle>
+            <img src="{{(profile | async).avatar}}" width="30" height="30">
+            <span>{{(profile | async).username}}</span>
+        </a>
+        <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+          <a class="nav-link" [routerLink]="['/profile']">Profile</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="logout" (click)="onLogout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="card mb-5">
+        <img src="{{(profile| async).avatar}}" class="card-img-top" alt="avatar">
+        <div class="card-body">
+          <h5 class="card-title">{{(profile| async).username}}</h5>
+          <p class="card-text" id="headline">{{(profile| async).headline}}</p>
+          <span><input type="text" id="input-headline" #status placeholder="status headline"></span>
+          <button class="btn btn-primary" id="btn-updateHeadline" (click)="updateHeadline(status.value); status.value=''">Update</button>
+        </div>
+      </div>
+      <h2>Following</h2>
+      <div class="card mb-2" *ngFor="let followUser of following | async">
+        <img src="{{followUser.avatar}}" class="card-img-top" alt="avatar">
+        <div class="card-body">
+          <h5 class="card-title">{{followUser.username}}</h5>
+          <p class="card-text">{{followUser.headline}}</p>
+          <button class="btn btn-primary" (click)="unfollow(followUser)">Unfollow</button>
+        </div>
+      </div>
+      <input type="text" #addUser placeholder="Add a following user">
+      <button class="btn btn-primary" (click)="follow(addUser.value); addUser.value=''">Add</button>
+      <ngb-alert *ngIf="userNotFound | async" [dismissible]="true">
+        User Not Found
+      </ngb-alert>
+    </div>
+    <div class="col-9">
+      <app-articles></app-articles>
+    </div>
+    <app-chat></app-chat>
+  </div>
+</div>

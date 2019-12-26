@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+<testsuite name="Validate Auth functionality" errors="0" tests="2" failures="0" time="0.055" timestamp="2019-11-19T10:10:54">
+  <testcase classname="Validate Auth functionality" name="validate POST /login" time="0.031"></testcase>
+  <testcase classname="Validate Auth functionality" name="validate PUT /logout" time="0.023"></testcase>
+</testsuite>
+</testsuites>

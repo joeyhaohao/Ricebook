@@ -1,0 +1,23 @@
+{
+  "netid": "yz157",
+  "frontend": "yz157-ricebook.surge.sh",
+  "backend": "https://yz157-ricebook.herokuapp.com/",
+  "test user": [
+    {
+      "username": "yz157",
+      "password": 123
+    },
+    {
+      "username": "trump",
+      "password": 123
+    },
+    {
+      "username": "xi",
+      "password": 123
+    },
+    {
+      "username": "mack",
+      "password": 123
+    }
+  ]
+}

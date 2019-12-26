@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h3>Sign Up</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)" ngNativeValidate>
+        <label for="username-signup">Username</label>
+        <input type="text" class="form-control" id="username-signup" formControlName="username" pattern="^[a-zA-Z][a-zA-Z0-9]+$" placeholder="Trump123" required>
+        <label for="display-name">Display Name</label>
+        <input type="text" class="form-control" id="display-name" formControlName="displayName" placeholder="Donald Trump">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="xxxxx@rice.edu" required>
+        <label for="phone">Phone Number</label>
+        <input type="tel" class="form-control" id="phone" formControlName="phone" pattern="\d\d\d-\d\d\d-\d\d\d\d" placeholder="123-456-7890" required>
+        <label for="dob">Date of Birth</label>
+        <input type="date" class="form-control" id="dob" formControlName="dob" required>
+        <ngb-alert *ngIf="registerForm.hasError('tooYoung')" [dismissible]="true">
+          Only individuals 18 years of age or older are allowed to register
+        </ngb-alert>
+        <label for="zipcode">Zipcode</label>
+        <input type="text" class="form-control" id="zipcode" formControlName="zipcode" pattern="\d\d\d\d\d" placeholder="77005" required>
+        <label for="pwd-signup">Password</label>
+        <input type="password" class="form-control" id="pwd-signup" formControlName="pwd" required>
+        <label for="pwd-confirm">Password Confirmation</label>
+        <input type="password" class="form-control" id="pwd-confirm" formControlName="pwdConfirm" required>
+        <ngb-alert *ngIf="registerForm.hasError('pwdNotMatch')" [dismissible]="true">
+          Password Not Match
+        </ngb-alert>
+        <button class="btn btn-md btn-primary btn-block" type="submit" id="btn-register">Sign up</button>
+        <ngb-alert id="regFlag" type="success" *ngIf="(regFlag | async)" [dismissible]="false">
+          Register successfully
+        </ngb-alert>
+        <ngb-alert *ngIf="(regErr | async)" [dismissible]="true">
+          {{ regErr | async }}
+        </ngb-alert>
+      </form>
+    </div>
+
+    <div class="col-2"></div>
+
+    <div class="col-5 float-right">
+      <h3>Already have an account?</h3>
+      <h3>Please log in</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" id="loginForm" ngNativeValidate>
+        <label for="username-login">Username</label>
+        <input type="text" class="form-control" id="username-login" formControlName="username" pattern="^[a-zA-Z][a-zA-Z0-9]+$" required>
+        <label for="pwd-login">Password</label>
+        <input type="password" class="form-control" id="pwd-login" formControlName="pwd" required>
+        <button class="btn btn-md btn-primary btn-block" type="submit" id="btn-login">Log In</button>
+        <button type="button" class="btn btn-info" (click)="onLoginFacebook()">Login with Facebook</button>
+        <ngb-alert *ngIf="(loginErr | async)" [dismissible]="false">
+          {{loginErr | async}}
+        </ngb-alert>
+      </form>
+    </div>
+
+  </div>
+</div>

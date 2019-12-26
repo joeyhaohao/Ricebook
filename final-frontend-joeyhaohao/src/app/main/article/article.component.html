@@ -1,0 +1,97 @@
+<div class="row">
+  <textarea id="newArticle" placeholder="What is going on" #textInput></textarea>
+</div>
+<div class="row mb-3">
+  <div class="col-12">
+    <button (click)="textInput.value=''" class="mx-2 btn btn-md btn-outline-danger float-right">Clear</button>
+    <button (click)="onAddPost(textInput.value, imgFile.files[0]); textInput.value=''" id="btn-post" class="btn btn-md btn-outline-info float-right">Post</button>
+    <span>Add Image</span>
+    <input type="file" accept="image/*" #imgFile>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8">
+    <input class="form-control" id="searchText" type="search" placeholder="Search" #searchContent>
+  </div>
+  <button (click)="onSearch(searchContent.value)" id="btn-search" class="btn btn-outline-success" type="submit">Search</button>
+</div>
+
+<div class="row articles" *ngFor="let article of articles | async">
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ article.image }}" class="card-img" alt="postImg">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <span><strong>{{ article.author }}</strong></span>
+          <button class="btn btn-md btn-warning float-right" *ngIf="(profile | async).username === article.author"
+                  (click)="openModal(editArticle)">Edit</button>
+          <hr>
+          <p class="card-text articleText">{{ article.text }}</p>
+          <span class="card-text"><small class="text-muted">Last updated {{article.date | date:'hh:mm:ss MMM dd, yyyy'}}</small></span>
+          <button class="btn btn-md btn-success float-right" (click)="openModal(addComment)">Comment</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #editArticle let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-editArticle">Article</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" value="{{article.text}}" #newArticle></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onEditArticle(article, newArticle.value); modal.close()">Post</button>
+      </div>
+    </ng-template>
+
+    <ng-template #addComment let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-addComment">Comment</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" placeholder="Say something" #commentInput></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onComment(article, commentInput.value); modal.close()">Post</button>
+      </div>
+    </ng-template>
+
+    <hr *ngIf="article.comments.length > 0">
+    <div *ngFor="let comment of article.comments">
+      <div class="col-12">
+        <span>@<strong>{{comment.author}}</strong>:</span>
+        <span><small class="float-right text-muted">{{comment.date | date:'hh:mm:ss MMM dd, yyyy'}}</small></span>
+      </div>
+      <div class="col-12 mx-2 mb-3">
+        <span>{{comment.text}}</span>
+        <button class="btn btn-sm btn-warning float-right" *ngIf="(profile | async).username===comment.author" (click)="openModal(editComment)">Edit</button>
+      </div>
+
+      <ng-template #editComment let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-editComment">Comment</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea class="form-control" value="{{comment.text}}" #newComment></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="onEditComment(article, comment, newComment.value); modal.close()">Submit</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+</div>
