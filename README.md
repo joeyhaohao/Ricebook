@@ -17,3 +17,5 @@ RiceBook is a social networking site for students to post ideas, follow users an
 * Instant messaging for online chat
 
 Visit our [website](http://yz157-ricebook.surge.sh/).
+
+Test user: {"username": "yz157", "password": 123}
