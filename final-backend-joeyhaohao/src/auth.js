@@ -27,8 +27,8 @@ passport.deserializeUser(function (id, done) {
 });
 
 const config = {
-  clientID: '571931973618576',
-  clientSecret: '268a4d993fcb8f870cc307f74124692c',
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
   callbackURL: server + '/auth/facebook/callback',
   passReqToCallback: true
 };
