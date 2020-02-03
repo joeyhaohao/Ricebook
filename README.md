@@ -6,14 +6,14 @@ RiceBook is a social networking site for students to post ideas, follow users an
 * Angular, Ajax
 * Nodejs, Express, MongoDB
 * Redis
-* OAuth
+* OAuth2
 * WebSocket
 
 ## Main Features
 * Facebook/Rice login
 * Post ideas and images
-* User Profile management
-* Follow users and get posts feed
+* Set up user Profile
+* Follow users and get the newest posts feed
 * Instant messaging for online chat
 
 Visit our [website](http://yz157-ricebook.surge.sh/).
